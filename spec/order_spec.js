@@ -1,21 +1,35 @@
-import { handleInput, clearInput } from '../src/Order.js';
+import { handleInput, clearInput } from '../Order.js';
 
-describe("Tests all stages of an order", function () {
+describe("Tests all stages of a takeout order", function () {
+
     beforeEach(function () {
         clearInput();
     });
-    it("test hello", function () {
+
+    it("test welcome", function () {
         const aResults = handleInput("hello");
-        expect(aResults[0]).toBe("Welcome to Rich's Acton Rapid Test.");
+        expect(aResults[0]).toBe("Welcome to Dream Takeout.");
     });
-    it("test yes", function () {
+
+    it("test ordering item", function () {
         handleInput("hello");
+        const aResults = handleInput("chicken fried rice");
+        expect(aResults[0]).toContain("What size");
+    });
+
+    it("test size selection", function () {
+        handleInput("hello");
+        handleInput("chicken fried rice");
+        const aResults = handleInput("medium");
+        expect(aResults[0]).toContain("extra egg");
+    });
+
+    it("test upsell drink", function () {
+        handleInput("hello");
+        handleInput("chicken fried rice");
+        handleInput("medium");
         const aResults = handleInput("yes");
-        expect(aResults[0]).toBe("Your rapid test is reserved");
+        expect(aResults[0]).toContain("added to your order");
     });
-    it("test no", function () {
-        handleInput("hello");
-        const aResults = handleInput("no");
-        expect(aResults[0]).toBe("Thanks for trying our reservation system");
-    });
+
 });

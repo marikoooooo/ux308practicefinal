@@ -1,24 +1,26 @@
-import React, { useRef } from 'react'; // 1. Add useRef
+import React, { useRef } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 
 export default function InputBar({ text, onChangeText, onSizeChange, onSendPressed }) {
-    const inputRef = useRef(null); // 2. Create the ref
+    const inputRef = useRef(null);
 
     return (
         <View style={styles.inputBar}>
             <TextInput 
                 style={styles.textBox}
-                ref={inputRef} // 3. Assign the ref correctly
+                ref={inputRef}
                 multiline={true}
                 onChangeText={(text) => onChangeText(text)}
                 onContentSizeChange={onSizeChange}
                 value={text} 
+                placeholder="Type your order..."
+                placeholderTextColor="#a0522d"
             />
             <TouchableHighlight 
                 style={styles.sendButton} 
                 onPress={() => onSendPressed()}
             >
-                <Text style={{ color: 'white' }}>Send</Text>
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>Send</Text>
             </TouchableHighlight>
         </View>
     );
@@ -28,26 +30,29 @@ const styles = StyleSheet.create({
     inputBar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 5,
-        paddingVertical: 3,
-        backgroundColor: '#f9f9f9' // Optional: adds visibility
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        backgroundColor: '#fdf6ec',
+        borderTopWidth: 1,
+        borderTopColor: '#e8c9a0',
     },
     textBox: {
-        borderRadius: 5,
+        borderRadius: 20,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: '#c8a07a',
         flex: 1,
-        fontSize: 16,
-        paddingHorizontal: 10,
-        backgroundColor: 'white'
+        fontSize: 15,
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        backgroundColor: 'white',
+        color: '#3b1a08',
     },
     sendButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingLeft: 15,
-        marginLeft: 5,
-        paddingRight: 15,
-        borderRadius: 5,
-        backgroundColor: '#66db30'
+        paddingHorizontal: 18,
+        marginLeft: 8,
+        borderRadius: 20,
+        backgroundColor: '#c0392b',
     },
-});
+})
