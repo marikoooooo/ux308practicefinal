@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import { rnw } from "vite-plugin-rnw";
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: '/ux308practicefinal/',
   plugins: [rnw()],
   server: {
     allowedHosts: true
